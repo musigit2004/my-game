@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+  =====================================
+   Tic Tac Toe Game
+   Made By Musfik(090)
+  =====================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Musfik(090)">
+  <title>Tic Tac Toe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Tic Tac Toe</h1>
+
+    <div class="scores" aria-label="Scoreboard">
+      <div class="score x" id="sx"><small id="lx">You (X)</small><strong id="vx">0</strong></div>
+      <div class="score"><small>Draws</small><strong id="vd">0</strong></div>
+      <div class="score o" id="so"><small id="lo">Computer (O)</small><strong id="vo">0</strong></div>
+    </div>
+
+    <p id="status" role="status" aria-live="polite"></p>
+
+    <div class="board" id="board" role="grid" aria-label="Game board"></div>
+
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Game mode">
+        <button type="button" id="m-easy" aria-pressed="false">Computer: Easy</button>
+        <button type="button" id="m-hard" aria-pressed="true">Computer: Hard</button>
+        <button type="button" id="m-two" aria-pressed="false">Two players</button>
+      </div>
+      <button type="button" class="ctl" id="again">New round</button>
+      <p class="hint">Hard mode never loses, so a draw is a good result. The starting player alternates each round.</p>
+    </div>
+
+    <footer class="credit">Made By Musfik(090)</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

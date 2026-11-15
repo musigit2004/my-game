@@ -1,0 +1,189 @@
+/*
+  =====================================
+   Tic Tac Toe Game - Stylesheet
+   Made By Musfik(090)
+  =====================================
+*/
+
+/* ---------- Colors and fonts (light theme) ---------- */
+:root {
+  --bg: #eef1ed;
+  --surface: #fbfcfa;
+  --fg: #1b2420;
+  --muted: #5a6860;
+  --line: #c9d3cc;
+  --x: #cf4a2c;
+  --o: #1d6c76;
+  --win: #f4d77a;
+  --accent: #1b2420;
+  --accent-fg: #fbfcfa;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---------- Dark theme (follows the computer's setting) ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131a17;
+    --surface: #1c2622;
+    --fg: #e8eee9;
+    --muted: #98a79e;
+    --line: #33423b;
+    --x: #ef7a5c;
+    --o: #5cb8c4;
+    --win: #5a4a14;
+    --accent: #e8eee9;
+    --accent-fg: #131a17;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  padding: 28px 16px;
+}
+
+main {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Scoreboard ---------- */
+.scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.score {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 0;
+}
+.score small {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.score strong {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-variant-numeric: tabular-nums;
+}
+.score.x strong { color: var(--x); }
+.score.o strong { color: var(--o); }
+.score.active { border-color: var(--fg); }
+
+#status { font-weight: 500; min-height: 1.5em; margin: 0; }
+
+/* ---------- Board ---------- */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+  aspect-ratio: 1;
+}
+.cell {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  cursor: pointer;
+  min-width: 0;
+  min-height: 0;
+  transition: background 0.15s, transform 0.1s;
+}
+.cell:hover:not(:disabled) { background: color-mix(in srgb, var(--surface) 80%, var(--line)); }
+.cell:active:not(:disabled) { transform: scale(0.97); }
+.cell:disabled { cursor: default; }
+.cell.win { background: var(--win); }
+
+.cell:focus-visible,
+button.ctl:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
+
+.cell svg { width: 58%; height: 58%; overflow: visible; }
+.cell .mark {
+  fill: none;
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  animation: draw 0.22s ease-out;
+}
+.cell .x-mark { stroke: var(--x); }
+.cell .o-mark { stroke: var(--o); }
+@keyframes draw {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* ---------- Controls ---------- */
+.controls { display: flex; flex-direction: column; gap: 12px; }
+
+.seg {
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.seg button {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  font: 500 0.85rem var(--font-body);
+  padding: 10px 6px;
+  cursor: pointer;
+}
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
+
+button.ctl {
+  border: 1px solid var(--fg);
+  background: transparent;
+  color: var(--fg);
+  font: 600 0.95rem var(--font-body);
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+button.ctl:hover { background: var(--fg); color: var(--bg); }
+
+.hint { margin: 0; font-size: 0.8rem; color: var(--muted); }
+
+/* ---------- Credit ---------- */
+.credit {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  padding-top: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell .mark { animation: none; }
+  .cell { transition: none; }
+}
